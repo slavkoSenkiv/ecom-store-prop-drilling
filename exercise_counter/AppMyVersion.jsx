@@ -27,9 +27,10 @@ export function counterReducer(state, action) {
 }
 
 export function CounterContextProvider({ children }) {
-  const [counterState, counterDispatch] = React.useReducer(counterReducer, {
-    count: 0,
-  });
+  const [counterState, counterDispatch] = React.useReducer(
+    counterReducer, 
+    { count: 0 }
+  );
 
   const handleIncrement = () => {
     counterDispatch({
