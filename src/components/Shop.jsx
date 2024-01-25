@@ -4,22 +4,20 @@ import { DUMMY_PRODUCTS } from "../dummy-products";
 export default function Shop() {
   return (
     <div id="shop">
-      <h1>Shop</h1>
-      <ul id="products">
-        {DUMMY_PRODUCTS.map((product, index) => {
-          const { image, title, price, description } = product;
-          return (
-            <li key={index}>
-              <Product
-                image={image}
-                title={title}
-                price={price}
-                description={description}
-              />
-            </li>
-          );
-        })}
-      </ul>
+      <h2>Elegant clothing for everyone</h2>
+      {DUMMY_PRODUCTS.length === 0 ? (
+        <p>There are no products to display!</p>
+      ) : (
+        <ul id="products">
+          {DUMMY_PRODUCTS.map((product, index) => {
+            return (
+              <li key={index}>
+                <Product product={product} />
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }
