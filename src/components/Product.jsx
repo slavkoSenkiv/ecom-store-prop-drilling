@@ -1,5 +1,9 @@
+import { CartContext } from "../store/cart-context";
+import { useContext } from "react";
+
 export default function Product({ product }) {
   const { image, title, price, description } = product;
+  const { addItemToCart } = useContext(CartContext);
 
   return (
     <div className="product">
@@ -9,7 +13,7 @@ export default function Product({ product }) {
         <p className="prduct-price">{`$${price}`}</p>
         <p>{description}</p>
         <span className="product-actions">
-          <button>+ Add (?)</button>
+          <button onClick={addItemToCart}>+ Add (?)</button>
         </span>
       </div>
     </div>

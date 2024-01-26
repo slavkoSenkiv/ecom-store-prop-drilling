@@ -1,9 +1,11 @@
 import logo from "../../public/logo.png";
+import { CartContext } from "../store/cart-context";
 import CartModal from "./CartModal";
-import { useRef } from "react";
-import items from "../store/cart-context";
+import { useRef, useContext } from "react";
 
 export default function Header() {
+  const {items} = useContext(CartContext);
+
   let actions;
   {items.length > 0
     ? (actions = (
