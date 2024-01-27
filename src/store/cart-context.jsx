@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import { DUMMY_PRODUCTS } from "../dummy-products";
 
 export const CartContext = createContext({
   items: [],
@@ -8,25 +9,45 @@ export const CartContext = createContext({
 
 function cartReducer(state, action) {
   if (action.type === "ADD_ITEM") {
-    console.log("adding item");
+
+    const updatedCartItems = [...state.items];
+
+    const itemToAddIndex = DUMMY_PRODUCTS.findIndex(
+      (product) => product.id === action.payload
+    );
+
+    if (existingCartItem) {
+
+    } else {
+
+      updatedCartItems.push(DUMMY_PRODUCTS[itemToAddIndex]);
+
+    }
+
+    return { 
+      ...state, 
+      items: updatedCartItems };
   }
+
   if (action.type === "UPDATE_ITEM") {
     console.log("updating item");
+    return { ...state };
   }
 }
 
 export default function CartContextProvider({ children }) {
   const [cartState, cartDispatch] = useReducer(cartReducer, { items: [] });
 
-  function handleAddItemToCart() {
+  function handleAddItemToCart(id) {
     cartDispatch({
-      type: "ADD_ITEM"
+      type: "ADD_ITEM",
+      payload: id,
     });
   }
 
   function handleUpdateItemInTheCart() {
     cartDispatch({
-      type: "UPDATE_ITEM"
+      type: "UPDATE_ITEM",
     });
   }
 

@@ -10,13 +10,13 @@ export default function Header() {
   {items.length > 0
     ? (actions = (
         <div>
-          <button>Close</button>
-          <button>Checkout</button>
+          <button>Close (?)</button>
+          <button>Checkout (?)</button>
         </div>
       ))
     : (actions = (
         <div>
-          <button>Close</button>
+          <button>Close (?)</button>
         </div>
       ));}
 
@@ -28,7 +28,7 @@ export default function Header() {
         <img src={logo} alt="" />
         <h1>Elegant Context</h1>
       </span>
-      <button onClick={() => modal.current.open()}>Cart (X)</button>
+      <button onClick={() => modal.current.open()}>Cart {items.length}</button>
     </div>
   );
 }
