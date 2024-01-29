@@ -7,16 +7,18 @@ export default function Product({ product }) {
   const { addItemToCart } = useContext(CartContext);
 
   return (
-    <div className="product">
+    <article className="product">
       <img src={image} alt="" />
       <div className="product-content">
-        <h3>{title}</h3>
-        <p className="prduct-price">{`$${price}`}</p>
-        <p>{description}</p>
+        <div>
+          <h3>{title}</h3>
+          <p className="product-price">${price}</p>
+          <p>{description}</p>
+        </div>
         <span className="product-actions">
           <button onClick={() => addItemToCart(id)}>+ Add to cart</button>
         </span>
       </div>
-    </div>
+    </article>
   );
 }

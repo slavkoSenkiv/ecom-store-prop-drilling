@@ -9,7 +9,7 @@ export default function Cart() {
   );
 
   return (
-    <>
+    <div id="cart">
       <ul id="cart-items">
         {items.map((cartItem, index) => {
           const formatedItemPrice = ` ($${cartItem.price})`;
@@ -33,6 +33,6 @@ export default function Cart() {
         })}
       </ul>
       <p id="cart-total-price">Total Sum: ${totalSum.toFixed(2)}</p>
-    </>
+    </div>
   );
 }

@@ -44,12 +44,15 @@ function cartReducer(state, action) {
     const updatedItemIndex = updatedCartItems.findIndex(
       (cartItem) => cartItem.id === action.payload.id
     );
-    const updatedItem = updatedCartItems[updatedItemIndex];
+    const updatedItem = { ...updatedCartItems[updatedItemIndex] };
 
-    updatedItem.quantity = updatedItem.quantity + action.payload.change;
+    updatedItem.quantity += action.payload.change;
     if (updatedItem.quantity <= 0) {
       updatedCartItems.splice(updatedItemIndex, 1);
+    }else {
+      updatedCartItems[updatedItemIndex] = updatedItem;
     }
+
 
     return {
       ...state,
