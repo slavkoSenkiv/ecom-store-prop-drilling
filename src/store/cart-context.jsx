@@ -40,8 +40,21 @@ function cartReducer(state, action) {
   }
 
   if (action.type === "UPDATE_ITEM") {
-    console.log("updating item");
-    return { ...state };
+    const updatedCartItems = [...state.items];
+    const updatedItemIndex = updatedCartItems.findIndex(
+      (cartItem) => cartItem.id === action.payload.id
+    );
+    const updatedItem = updatedCartItems[updatedItemIndex];
+
+    updatedItem.quantity = updatedItem.quantity + action.payload.change;
+    if (updatedItem.quantity <= 0) {
+      updatedCartItems.splice(updatedItemIndex, 1);
+    }
+
+    return {
+      ...state,
+      items: updatedCartItems,
+    };
   }
 }
 
@@ -55,9 +68,13 @@ export default function CartContextProvider({ children }) {
     });
   }
 
-  function handleUpdateItemInTheCart() {
+  function handleUpdateItemInTheCart(id, change) {
     cartDispatch({
       type: "UPDATE_ITEM",
+      payload: {
+        id,
+        change,
+      },
     });
   }
 

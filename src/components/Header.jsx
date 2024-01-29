@@ -10,13 +10,13 @@ export default function Header() {
   {items.length > 0
     ? (actions = (
         <div>
-          <button>Close (?)</button>
-          <button>Checkout (?)</button>
+          <button onClick={() => modal.current.close()}>Close</button>
+          <button onClick={() => modal.current.close()}>Checkout</button>
         </div>
       ))
     : (actions = (
         <div>
-          <button>Close (?)</button>
+          <button onClick={() => modal.current.close()}>Close</button>
         </div>
       ));}
 
