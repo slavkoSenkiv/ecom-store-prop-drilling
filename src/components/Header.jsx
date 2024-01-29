@@ -1,39 +1,35 @@
+import logo from "../../public/logo.png";
+import { CartContext } from "../store/cart-context";
+import CartModal from "./CartModal";
 import { useRef, useContext } from "react";
-import { CartContext } from "../store/shoping-cart-context.jsx";
-import CartModal from "./CartModal.jsx";
 
 export default function Header() {
-  const modal = useRef();
   const { items } = useContext(CartContext);
 
-  const cartQuantity = items.length;
-
-  function handleOpenCartClick() {
-    modal.current.open();
-  }
-  
-  let modalActions = <button>Close</button>;
-
-  if (cartQuantity > 0) {
-    modalActions = (
-      <>
-        <button>Close</button>
-        <button>Checkout</button>
-      </>
-    );
+  let actions;
+  {
+    items.length > 0
+      ? (actions = (
+          <>
+            <button>Close</button>
+            <button>Checkout</button>
+          </>
+        ))
+      : (actions = <button>Close</button>);
   }
 
+  const modal = useRef();
   return (
     <>
-      <CartModal ref={modal} title="Your Cart" actions={modalActions} />
+      <CartModal ref={modal} actions={actions} />
       <header id="main-header">
         <div id="main-title">
-          <img src="logo.png" alt="Elegant model" />
+          <img src={logo} alt="" />
           <h1>Elegant Context</h1>
         </div>
-        <p>
-          <button onClick={handleOpenCartClick}>Cart ({cartQuantity})</button>
-        </p>
+        <button onClick={() => modal.current.open()}>
+          Cart {items.length}
+        </button>
       </header>
     </>
   );
